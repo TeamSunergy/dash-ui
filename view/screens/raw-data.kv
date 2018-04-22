@@ -1,0 +1,37 @@
+<Row@BoxLayout>:
+    canvas.before:
+        Color:
+            rgba: .3,.3,.3,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    value: ''
+    Label:
+        text: root.value
+        text_size: self.width, None
+        size_hint: 1, None
+        #height: self.texture_size[1]
+<RawDataScreen>:
+    BoxLayout:
+        padding: [5,5,5,0]
+        canvas:
+            Color:
+                rgba: .19,.19,.19, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        rv: rv
+        orientation: 'vertical'
+        RecycleView:
+            id: rv
+            scroll_type: ['bars', 'content']
+            scroll_wheel_distance: dp(114)
+            bar_width: dp(5)
+            viewclass: 'Row'
+            RecycleGridLayout:
+                cols: 3
+                default_size_hint: .33, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                spacing: dp(1)

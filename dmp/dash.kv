@@ -1,0 +1,166 @@
+<NavBar>:
+    anchor_x:'center'
+    anchor_y:'top'
+    GridLayout:
+        orientation: 'horizontal'
+        size_hint: 1, .1
+        rows: 1
+        cols: 10
+        Image:
+            source: './static/test-icon@2x.png'
+        Image:
+            source: './static/park-off@2x.png'
+        Image:
+            source: './static/cruise-off@2x.png'
+        Label:
+            text: 'BPS'
+        Label:
+            text: app.time
+        Label:
+            text: 'Lights'
+        Label:
+            text: 'lA'
+        Label:
+            text: 'RA'
+        Button:
+            text: 'X'
+            background_normal: ''
+            background_color: .37,.37,.37,.5
+            on_release: app.root.ids.manager.current = 'settings'
+<Dash>:
+    canvas.before:
+        Color:
+            rgba: 1,1,1,.4
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    NavBar:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'bottom'
+        ScreenManager:
+            canvas.before:
+                Color:
+                    rgba: app.background_color
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: manager
+            size_hint: 1, .90
+            Screen:
+                name: 'standard_mode'
+                id: "test"
+                StandardMenu:
+            Screen:
+                name: 'dev_mode'
+                Label:
+                    text: 'Dev Mode'
+            Screen:
+                name: 'error_log'
+                Label:
+                    text: 'Error Log'
+            Screen:
+                name: 'settings'
+                SettingsMenu:
+
+            Screen:
+                name: 'raw_data'
+                Table:
+<SettingsMenu>:
+    anchor_x: 'center'
+    anchor_y: 'center'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: .8, .2
+        Label:
+            text: str(root.temp)
+        Button:
+            text: str(root.temp)
+            on_release: app.root.ids.manager.current = 'error_log'
+            on_release: root.test()
+        Button:
+            text: 'Standard Mode'
+            on_release: app.root.ids.manager.current = 'standard_mode'
+        Button:
+            text: 'Dev Mode'
+            on_release: app.root.ids.manager.current = 'dev_mode'
+        Button:
+            text: 'Raw Data'
+            on_release: app.root.ids.manager.current = 'raw_data'
+
+<StandardMenu>:
+    rows:1
+    cols:3
+    LeftStack:
+
+    StackLayout:
+        orientation: 'tb-lr'
+        Button:
+            text: 'Button 1'
+            size: 100, 100
+            size_hint: None, None
+        Button:
+            text: 'Button 2'
+            size_hint: None, None
+            size: 200, 100
+    StackLayout:
+        orientation: 'tb-lr'
+        Label:
+            text: 'Button 1'
+            size: 100, 100
+            size_hint: None, None
+        Button:
+            text: 'Button 2'
+            size_hint: None, None
+            size: 200, 100
+<Messages>:
+    anchor_x: 'center'
+    anchor_y: 'top'
+    StackLayout:
+        orientation: 'bt-lr'
+        size_hint: 1, .2
+        Label:
+            text: "error"
+<LeftStack>:
+    orientation: 'tb-rl'
+    padding: [0,0,100,0]
+    Label:
+        text: 'Main'
+        text_size: self.size
+        size_hint: None, None
+        halign: 'right'
+    Label:
+        text: "000"
+        text_size: self.size
+        size_hint: None, None
+        halign: 'right'
+    Label:
+        text: 'Speed'
+        text_size: self.size
+        size_hint: None, None
+        halign: 'right'
+<Header>:
+    orientation: 'horizontal'
+    size_hint: 1, .1
+    Label:
+        text: '1'
+<Table>:
+    GridLayout:
+        size_hint_y: None
+        row_default_height: '40dp'
+        row_force_default: True
+        height: self.minimum_height
+        cols: 3
+        canvas.before:
+            Color:
+                rgb: 0.5, 0.5, 0.5
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: "efe"
+        Label:
+            text: "text"
+        Label:
+            text: "text"

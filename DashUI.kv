@@ -1,0 +1,100 @@
+#:kivy 1.10.0
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:include view/screens/main.kv
+#:include view/screens/error.kv
+#:include view/screens/dev.kv
+#:include view/screens/raw-data.kv
+#:include view/screens/settings.kv
+
+
+#Fixed Navigation Bar
+<Static@Image>:
+    color:[.31,.31,.31,1]
+<NavigationBar>:
+    anchor_x: 'center'
+    anchor_y: 'top'
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba: (.19,.19,.19,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: 'horizontal'
+        size_hint: 1, .15
+        Static:
+            source: './static/park.png'
+            color: [.2,.82, .92, 1]
+        Static:
+            source: './static/drive.png'
+            color: [.99, .96, .36, 1]
+        Static:
+            source: './static/cruise.png'
+        Static:
+            source: './static/bps.png'
+            color:[.94, .38, .31, 1]
+        Label:
+            text: str(root.time)
+        Static:
+            source: './static/headlights.png'
+            color: [0, .23, .73, 1]
+        Static:
+            source: './static/left_signal_small.png'
+        Static:
+            source: './static/right_signal_small.png'
+            color:[.93, .73, .43, 1]
+        Button:
+            id: generate_btn
+            background_color: 0,0,0,0
+            canvas.before:
+                Color:
+                    rgba: (.19,.19,.19,1) if self.state=='normal' else (0,.7,.7,1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            selected: False
+            on_release:
+                root.update_screen(app.root.ids.screen_management.current)
+            Image:
+                size: generate_btn.size
+                source: './static/close.png' if self.parent.selected else './static/menu.png'
+                pos: generate_btn.pos
+
+    AnchorLayout:
+        anchor_x:'center'
+        anchor_y: 'bottom'
+        ScreenManagement:
+            id: screen_management
+            size_hint: 1, .85
+            canvas.before:
+                Color:
+                    rgb: [.19,.19,.19,1]
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+#Create a manager for screens - Main, Dev, Error, RawData, and Settings
+<ScreenManagement>:
+    main_screen: main_screen
+    error_screen: error_screen
+    dev_screen: dev_screen
+    raw_data_screen: raw_data_screen
+    settings_screen: settings_screen
+    id: screen_management
+    MainScreen:
+        id: main_screen
+        name: "main_screen_name"
+        manager: screen_management
+    ErrorScreen:
+        id: error_screen
+        name: "error_screen_name"
+        manager: screen_management
+    DevScreen:
+        id: dev_screen
+        name: "dev_screen_name"
+    RawDataScreen:
+        id: raw_data_screen
+        name: "raw_data_screen_name"
+    SettingsScreen:
+        id: settings_screen
+        name: "settings_screen_name"

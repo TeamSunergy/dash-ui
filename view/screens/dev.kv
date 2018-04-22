@@ -1,0 +1,154 @@
+<Header@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'right'
+    font_size: 40
+    color: [1,1,1,1]
+<Value@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'right'
+    font_size: 80
+    color: [.8,.8,.8,1]
+<Description@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'right'
+    font_size: 40
+    color: [.42,.42,.42, 1]
+    line_height: 2
+<SeparatorY@Widget>
+    padding: [0,0,75,0]
+    size_hint_x: None
+    thickness: 2
+    margin: 2
+    width: self.thickness + 2 * self.margin
+    color: [1,1,1,1]
+    canvas:
+        Color:
+            rgb: self.color
+        Rectangle:
+            pos: self.x, self.height * .10 /2
+            size:  self.thickness, self.height*.90
+<SeparatorX@Widget>
+    size_hint_y: None
+    thickness: 2
+    margin: 20
+    height: self.thickness * self.margin
+    color: [1,1,1,1]
+    canvas:
+        Color:
+            rgb: self.color
+        Rectangle:
+            pos: self.x , self.y + self.margin
+            size: self.width, self.thickness
+<DevScreen>:
+    GridLayout:
+        cols: 5
+        rows: 1
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [0,0,35,0]
+            Header:
+                text: 'Main'
+            Value:
+                text: "34 mph"
+            Description:
+                text: 'Speed'
+            Value:
+                text: "130 volts"
+            Description:
+                text: 'Net Power'
+            Value:
+                text: "+20 W"
+            Description:
+                text: 'Battery Voltage'
+            Widget:
+
+        SeparatorY:
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [35,0,35,0]
+            Header:
+                text: 'Cells'
+                halign: 'left'
+            Value:
+                text: "40°"
+                halign: 'left'
+            Description:
+                text: 'Hi-Cell Temp'
+                halign: 'left'
+                line_height: 1
+            Value:
+                text: "84 v"
+                halign: 'left'
+            Description:
+                text: 'Hi-Cell Voltage'
+                halign: 'left'
+                line_height: 1
+
+            SeparatorX:
+            Header:
+                text: 'Array'
+                halign: 'left'
+            Value:
+                text: "90 W"
+                halign: 'left'
+
+            Description:
+                text: 'Total Array Power'
+                halign: 'left'
+                line_height: 1
+            Value:
+                text: "90 W"
+                halign: 'left'
+            Description:
+                text: 'Total Array Power'
+                halign: 'left'
+                line_height: 1
+            Widget:
+        SeparatorY:
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [35,0,35,0]
+            Header:
+                text: 'Odometer'
+                halign: 'left'
+            Value:
+                text: "114 mi"
+                halign: 'left'
+            Description:
+                text: 'Total'
+                line_height: 1
+                halign: 'left'
+            Value:
+                text: "27 mi"
+                halign: 'left'
+            Description:
+                text: 'Trip'
+                line_height: 1
+                halign: 'left'
+            SeparatorX:
+            Header:
+                text: 'BPS'
+                halign: 'left'
+            Value:
+                text: "40°"
+                halign: 'left'
+
+            Description:
+                text: 'Avg. Battery Temp'
+                line_height: 1
+                halign: 'left'
+            Value:
+                text: "Error 01"
+                halign: 'left'
+            Description:
+                text: 'Status'
+                halign: 'left'
+                line_height: 1
+            Widget:
