@@ -30,4 +30,4 @@ async def echo_handler(client, loop, sleep_seconds):
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(echo_server(('127.0.0.1',25000), loop, 4))
+    loop.run_until_complete(echo_server(('127.0.0.1',25000), loop, 1))

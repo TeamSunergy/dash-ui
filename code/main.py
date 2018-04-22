@@ -9,6 +9,9 @@ from kivy.uix.boxlayout import BoxLayout
 from threading import Thread
 import socket
 import json
+import socket
+import os
+import sys
 
 
 
@@ -43,23 +46,25 @@ class NavigationBar(AnchorLayout):
 class MainScreen(Screen):
     def __init__(self, **kwargs):   
         super(MainScreen, self).__init__(**kwargs)
-        self.speed = '0'
-        self.host = '127.0.0.1'
-        self.port = 25000
-        self.sock = socket.socket()
-        self.data = {}
+        self.server_address = "/tmp/mySocket"
+        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         Thread(target=self.connect).start()
     def connect(self):
-        self.sock.connect((self.host, self.port))
-        while True:
-            data = self.sock.recv(4096)
-            if not data:
-                break
-            self.data = json.loads(data.decode())
-            self.update(self.data)
+        try:
+            self.sock.connect(self.server_address)
+        except socket.error as msg:
+            print(msg, file=sys.stderr)
+        try:
+            while True:
+                data = self.sock.recv(4096)
+                self.update(data)
+        finally:
+            print('closing socket', file=sys.stderr)
+            self.sock.close()
 
     def update(self, data):
         self.manager.raw_data_screen.populate(data)
+        self.manager.dev_screen.update(data)
 
 
 
@@ -71,7 +76,12 @@ class ErrorScreen(Screen, RecycleView):
 
 
 class DevScreen(Screen):
-    pass
+    list = ListProperty([])
+    def update(self, data):
+        print(data)
+        list[0].append(data)
+
+
 
 
 class RawDataScreen(Screen):
