@@ -11,7 +11,6 @@ import socket
 import json
 
 
-
 class ScreenManagement(ScreenManager):
     main_screen = ObjectProperty(None)
     error_screen = ObjectProperty(None)
@@ -88,9 +87,19 @@ class SettingsScreen(Screen):
 
 
 class DashUIApp(App):
+    colors_hex = {
+        'white': '#ffffff',
+        'red': '#000000',
+        'green': '#111111',
+        'gray_0': '#222222',
+        'gray_1': '#232323',
+        'yellow': '#333333',
+        'blue': '#444444'}
+
     def build(self):
         nav = NavigationBar()
         Clock.schedule_interval(nav.update_time, 1)
+        setup_colors(self.colors_hex)
         return nav
 
 if __name__ == "__main__":
