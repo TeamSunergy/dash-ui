@@ -12,6 +12,7 @@ import json
 import socket
 import os
 import sys
+from kivy.core.window import Window
 
 
 
@@ -46,21 +47,38 @@ class NavigationBar(AnchorLayout):
 class MainScreen(Screen):
     def __init__(self, **kwargs):   
         super(MainScreen, self).__init__(**kwargs)
-        self.server_address = "/tmp/mySocket"
-        self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+        self._keyboard.bind(on_key_down=self._on_keyboard_down)
+        self.speed = '0'
+        self.host = '127.0.0.1'
+        self.port = 25000
+        self.sock = socket.socket()
+        self.data = {}
         Thread(target=self.connect).start()
     def connect(self):
-        try:
-            self.sock.connect(self.server_address)
-        except socket.error as msg:
-            print(msg, file=sys.stderr)
-        try:
-            while True:
-                data = self.sock.recv(4096)
-                self.update(data)
-        finally:
-            print('closing socket', file=sys.stderr)
-            self.sock.close()
+        self.sock.connect((self.host, self.port))
+        while True:
+            data = self.sock.recv(4096)
+            if not data:
+                break
+            self.data = json.loads(data.decode())
+
+    def _keyboard_closed(self):
+        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
+        self._keyboard = None
+
+    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        if keycode[1] == '1':
+            self.manager.current = 'settings_screen_name'
+        elif keycode[1] == '2':
+            self.manager.current = 'main_screen_name'
+        elif keycode[1] == '3':
+            self.manager.current = 'dev_screen_name'
+        elif keycode[1] == '4':
+            self.manager.current = 'raw_data_screen_name'
+        elif keycode[1] == '5':
+            self.manager.current = 'error_screen_name'
+        return True
 
     def update(self, data):
         self.manager.raw_data_screen.populate(data)
@@ -78,8 +96,8 @@ class ErrorScreen(Screen, RecycleView):
 class DevScreen(Screen):
     list = ListProperty([])
     def update(self, data):
-        print(data)
-        list[0].append(data)
+        list[0] = 1
+        print(list)
 
 
 
