@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty, ListProperty
+from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty, ListProperty, DictProperty
 from kivy.clock import Clock
 from datetime import datetime
 from kivy.uix.anchorlayout import AnchorLayout
@@ -13,8 +13,20 @@ import socket
 import os
 import sys
 from kivy.core.window import Window
+from kivy.core.text import LabelBase
 
 
+KIVY_FONTS = [
+    {
+        "name": "Inconsolata",
+        "fn_regular": "static/fonts/Inconsolata/Inconsolata-Regular.ttf",
+    },
+    {
+        "name": "SourceSansPro",
+        "fn_regular": "static/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf"
+
+    }
+]
 
 class ScreenManagement(ScreenManager):
     main_screen = ObjectProperty(None)
@@ -30,7 +42,7 @@ class NavigationBar(AnchorLayout):
 
     # update StringProperty time -- 1 second intervals
     def update_time(self, *args):
-        self.time = datetime.now().strftime('%H:%M:%S')
+        self.time = datetime.now().strftime('%H:%M')
 
     def update_screen(self, current_screen):
         print(current_screen)
@@ -62,6 +74,7 @@ class MainScreen(Screen):
             if not data:
                 break
             self.data = json.loads(data.decode())
+            self.update(self.data)
 
     def _keyboard_closed(self):
         self._keyboard.unbind(on_key_down=self._on_keyboard_down)
@@ -94,10 +107,13 @@ class ErrorScreen(Screen, RecycleView):
 
 
 class DevScreen(Screen):
-    list = ListProperty([])
+    list = DictProperty({'speed': 0})
+    def __init__(self, **kwargs):
+        super(DevScreen, self).__init__(**kwargs)
+
     def update(self, data):
-        list[0] = 1
-        print(list)
+        self.list = data
+
 
 
 
@@ -122,4 +138,6 @@ class DashUIApp(App):
         return nav
 
 if __name__ == "__main__":
+    for font in KIVY_FONTS:
+        LabelBase.register(**font)
     DashUIApp().run()

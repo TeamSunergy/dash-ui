@@ -21,7 +21,7 @@
                 pos: self.pos
                 size: self.size
         orientation: 'horizontal'
-        size_hint: 1, .15
+        size_hint: 1, .1
         Static:
             source: './static/icons/park.png'
             color: [.2,.82, .92, 1]
@@ -29,12 +29,15 @@
             source: './static/icons/drive.png'
             color: [.99, .96, .36, 1]
         Static:
+            source: './static/icons/reverse.png'
+        Static:
             source: './static/icons/cruise.png'
         Static:
             source: './static/icons/bps.png'
             color:[.94, .38, .31, 1]
         Label:
             text: str(root.time)
+            font_name: "SourceSansPro"
         Static:
             source: './static/icons/headlights.png'
             color: [0, .23, .73, 1]
@@ -59,13 +62,14 @@
                 size: generate_btn.size
                 source: './static/icons/close.png' if self.parent.selected else './static/icons/menu.png'
                 pos: generate_btn.pos
+        Label:
 
     AnchorLayout:
         anchor_x:'center'
         anchor_y: 'bottom'
         ScreenManagement:
             id: screen_management
-            size_hint: 1, .85
+            size_hint: 1, .90
             canvas.before:
                 Color:
                     rgb: [.19,.19,.19,1]
