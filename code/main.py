@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty, ListProperty
+from kivy.properties import ObjectProperty, NumericProperty, StringProperty, BooleanProperty, ListProperty, DictProperty
 from kivy.clock import Clock
 from datetime import datetime
 from kivy.uix.anchorlayout import AnchorLayout
@@ -9,8 +9,23 @@ from kivy.uix.boxlayout import BoxLayout
 from threading import Thread
 import socket
 import json
+import socket
+import os
+import sys
+from kivy.core.window import Window
+from kivy.core.text import LabelBase
 
 
+KIVY_FONTS = [
+    {
+        "name": "Inconsolata",
+        "fn_regular": "static/fonts/Inconsolata/Inconsolata-Regular.ttf",
+    },
+    {
+        "name": "SourceSansPro",
+        "fn_regular": "static/fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf"
+    }
+]
 class ScreenManagement(ScreenManager):
     main_screen = ObjectProperty(None)
     error_screen = ObjectProperty(None)
@@ -25,7 +40,7 @@ class NavigationBar(AnchorLayout):
 
     # update StringProperty time -- 1 second intervals
     def update_time(self, *args):
-        self.time = datetime.now().strftime('%H:%M:%S')
+        self.time = datetime.now().strftime('%H:%M')
 
     def update_screen(self, current_screen):
         print(current_screen)
@@ -42,6 +57,8 @@ class NavigationBar(AnchorLayout):
 class MainScreen(Screen):
     def __init__(self, **kwargs):   
         super(MainScreen, self).__init__(**kwargs)
+        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+        self._keyboard.bind(on_key_down=self._on_keyboard_down)
         self.speed = '0'
         self.host = '127.0.0.1'
         self.port = 25000
@@ -57,8 +74,26 @@ class MainScreen(Screen):
             self.data = json.loads(data.decode())
             self.update(self.data)
 
+    def _keyboard_closed(self):
+        self._keyboard.unbind(on_key_down=self._on_keyboard_down)
+        self._keyboard = None
+
+    def _on_keyboard_down(self, keyboard, keycode, text, modifiers):
+        if keycode[1] == '1':
+            self.manager.current = 'settings_screen_name'
+        elif keycode[1] == '2':
+            self.manager.current = 'main_screen_name'
+        elif keycode[1] == '3':
+            self.manager.current = 'dev_screen_name'
+        elif keycode[1] == '4':
+            self.manager.current = 'raw_data_screen_name'
+        elif keycode[1] == '5':
+            self.manager.current = 'error_screen_name'
+        return True
+
     def update(self, data):
         self.manager.raw_data_screen.populate(data)
+        self.manager.dev_screen.update(data)
 
 
 
@@ -70,7 +105,15 @@ class ErrorScreen(Screen, RecycleView):
 
 
 class DevScreen(Screen):
-    pass
+    list = DictProperty({'speed': 0})
+    def __init__(self, **kwargs):
+        super(DevScreen, self).__init__(**kwargs)
+
+    def update(self, data):
+        self.list = data
+
+
+
 
 
 class RawDataScreen(Screen):
@@ -99,8 +142,10 @@ class DashUIApp(App):
     def build(self):
         nav = NavigationBar()
         Clock.schedule_interval(nav.update_time, 1)
-        setup_colors(self.colors_hex)
+        # setup_colors(self.colors_hex)
         return nav
 
 if __name__ == "__main__":
+    for font in KIVY_FONTS:
+        LabelBase.register(**font)
     DashUIApp().run()

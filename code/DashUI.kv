@@ -10,42 +10,58 @@
 #Fixed Navigation Bar
 <Static@Image>:
     color:[.31,.31,.31,1]
+    size_hint: .1, .1
 <NavigationBar>:
     anchor_x: 'center'
     anchor_y: 'top'
-    BoxLayout:
+    FloatLayout:
         canvas.before:
             Color:
                 rgba: (.19,.19,.19,1)
             Rectangle:
                 pos: self.pos
                 size: self.size
-        orientation: 'horizontal'
-        size_hint: 1, .15
         Static:
-            source: './static/park.png'
+            source: './static/icons/park.png'
             color: [.2,.82, .92, 1]
+            pos_hint:{'x':0, 'top': 1}
         Static:
-            source: './static/drive.png'
+            source: './static/icons/reverse.png'
             color: [.99, .96, .36, 1]
+            pos_hint:{'x':0.04, 'top': 1}
         Static:
-            source: './static/cruise.png'
+            source: './static/icons/drive.png'
+            pos_hint:{'x':0.08, 'top': 1}
         Static:
-            source: './static/bps.png'
+            source: './static/icons/cruise.png'
+            pos_hint:{'x':0.16, 'top': 1}
+        Static:
+            source: './static/icons/bps.png'
+            pos_hint:{'x':0.23, 'top': 1}
             color:[.94, .38, .31, 1]
         Label:
             text: str(root.time)
+            font_name: "SourceSansPro"
+            pos_hint:{'center_x':0.5, 'top': 1}
+            size_hint: .1, .1
+            font_size: '24pt'
         Static:
-            source: './static/headlights.png'
+            source: './static/icons/headlights.png'
             color: [0, .23, .73, 1]
+            pos_hint:{'x':0.65, 'top': 1}
         Static:
-            source: './static/left_signal_small.png'
+            source: './static/icons/left_signal_small.png'
+            pos_hint:{'x':0.74, 'top': 1}
         Static:
-            source: './static/right_signal_small.png'
+            source: './static/icons/right_signal_small.png'
             color:[.93, .73, .43, 1]
+            pos_hint:{'x':0.77, 'top': 1}
+
         Button:
             id: generate_btn
+            size_hint: .1, .1
             background_color: 0,0,0,0
+            pos_hint:{'x':.9, 'top': 1}
             canvas.before:
                 Color:
                     rgba: (.19,.19,.19,1) if self.state=='normal' else (0,.7,.7,1)
@@ -57,15 +73,16 @@
                 root.update_screen(app.root.ids.screen_management.current)
             Image:
                 size: generate_btn.size
-                source: './static/close.png' if self.parent.selected else './static/menu.png'
+                source: './static/icons/close.png' if self.parent.selected else './static/icons/menu.png'
                 pos: generate_btn.pos
+
 
     AnchorLayout:
         anchor_x:'center'
         anchor_y: 'bottom'
         ScreenManagement:
             id: screen_management
-            size_hint: 1, .85
+            size_hint: 1, .90
             canvas.before:
                 Color:
                     rgb: [.19,.19,.19,1]
