@@ -1,25 +1,78 @@
-<Header@Label>:
+<HeaderLarge@Label>:
     text_size: root.width, None
     size: self.texture_size
     size_hint: 1, None
     halign: 'right'
-    font_size: 40
     color: [1,1,1,1]
-<Value@Label>:
+    font_name: 'Inconsolata'
+    bold: True
+    font_size: '24pt'
+<ValueLarge@Label>:
     text_size: root.width, None
     size: self.texture_size
     size_hint: 1, None
     halign: 'right'
-    font_size: 80
     color: [.8,.8,.8,1]
-<Description@Label>:
+    font_size: '48pt'
+    font_name: "SourceSansPro"
+<DescriptionLarge@Label>:
     text_size: root.width, None
     size: self.texture_size
     size_hint: 1, None
     halign: 'right'
-    font_size: 40
     color: [.42,.42,.42, 1]
-    line_height: 2
+    font_name: 'Inconsolata'
+    bold: True
+    font_size: '24pt'
+<HeaderMedium@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    font_size: ''
+    color: [1,1,1,1]
+    font_name: 'Inconsolata'
+    bold: True
+    font_size: '24pt'
+<ValueMedium@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    color: [.8,.8,.8,1]
+    font_size: '32pt'
+    font_name: "SourceSansPro"
+
+<DescriptionMedium@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    color: [.42,.42,.42, 1]
+    font_name: 'Inconsolata'
+    bold: True
+    font_size: '18pt'
+
+<ValueSmall@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    color: [.8,.8,.8,1]
+    font_size: '20pt'
+    font_name: "SourceSansPro"
+<DescriptionSmall@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    color: [.42,.42,.42, 1]
+    font_name: 'Inconsolata'
+    bold: True
+    font_size: '15pt'
+
+
+
 <SeparatorY@Widget>
     padding: [0,0,75,0]
     size_hint_x: None
@@ -52,103 +105,95 @@
         BoxLayout:
             orientation: 'vertical'
             padding: [0,0,35,0]
-            Header:
-                text: 'Main'
-            Value:
-                text: "34 mph"
-            Description:
-                text: 'Speed'
-            Value:
-                text: "130 volts"
-            Description:
-                text: 'Net Power'
-            Value:
+            HeaderLarge:
+                text: 'MAIN'
+            ValueLarge:
+                text: str(root.list['speed']) + ' mph'
+            DescriptionLarge:
+                text: 'SPEED'
+            ValueLarge:
+                text: "130 v"
+            DescriptionLarge:
+                text: 'BATTERY VOLT.'
+            ValueLarge:
                 text: "+20 W"
-            Description:
-                text: 'Battery Voltage'
+            DescriptionLarge:
+                text: 'NET POWER'
             Widget:
-
         SeparatorY:
-
         BoxLayout:
             orientation: 'vertical'
             padding: [35,0,35,0]
-            Header:
-                text: 'Cells'
-                halign: 'left'
-            Value:
-                text: "40°"
-                halign: 'left'
-            Description:
-                text: 'Hi-Cell Temp'
-                halign: 'left'
-                line_height: 1
-            Value:
-                text: "84 v"
-                halign: 'left'
-            Description:
-                text: 'Hi-Cell Voltage'
-                halign: 'left'
-                line_height: 1
-
+            HeaderMedium:
+                text: 'CELLS'
+            ValueMedium:
+                text: "40°C"
+            DescriptionMedium:
+                text: 'HI-CELL TEMP'
+            ValueMedium:
+                text: "3.5000 v"
+            DescriptionMedium:
+                text: 'HI-CELL VOLTAGE'
             SeparatorX:
-            Header:
-                text: 'Array'
-                halign: 'left'
-            Value:
-                text: "90 W"
-                halign: 'left'
-
-            Description:
-                text: 'Total Array Power'
-                halign: 'left'
-                line_height: 1
-            Value:
-                text: "90 W"
-                halign: 'left'
-            Description:
-                text: 'Total Array Power'
-                halign: 'left'
-                line_height: 1
-            Widget:
+            HeaderMedium:
+                text: 'ARRAY'
+            ValueMedium:
+                text: "1200 W"
+            DescriptionMedium:
+                text: 'TOTAL ARRAY POWER'
+            GridLayout:
+                padding: [0,20,0,0]
+                cols: 3
+                rows: 2
+                ValueSmall:
+                    text: '123'
+                ValueSmall:
+                    text: '123'
+                ValueSmall:
+                    text: '123'
+                DescriptionSmall:
+                    text: 'SUB-A'
+                DescriptionSmall:
+                    text: 'SUB-B'
+                DescriptionSmall:
+                    text: 'SUB-C'
         SeparatorY:
         BoxLayout:
             orientation: 'vertical'
             padding: [35,0,35,0]
-            Header:
-                text: 'Odometer'
+            HeaderMedium:
+                text: 'ODOMETER'
                 halign: 'left'
-            Value:
+            ValueMedium:
                 text: "114 mi"
                 halign: 'left'
-            Description:
-                text: 'Total'
+            DescriptionMedium:
+                text: 'TOTAL'
                 line_height: 1
                 halign: 'left'
-            Value:
+            ValueMedium:
                 text: "27 mi"
                 halign: 'left'
-            Description:
-                text: 'Trip'
+            DescriptionMedium:
+                text: 'TRIP'
                 line_height: 1
                 halign: 'left'
             SeparatorX:
-            Header:
+            HeaderMedium:
                 text: 'BPS'
                 halign: 'left'
-            Value:
+            ValueMedium:
                 text: "40°"
                 halign: 'left'
-
-            Description:
-                text: 'Avg. Battery Temp'
+            DescriptionMedium:
+                text: 'AVG. BATTERY TEMP'
                 line_height: 1
                 halign: 'left'
-            Value:
+            ValueMedium:
                 text: "Error 01"
                 halign: 'left'
-            Description:
-                text: 'Status'
+            DescriptionMedium:
+                text: 'STATUS'
                 halign: 'left'
                 line_height: 1
             Widget:
