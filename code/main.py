@@ -40,7 +40,7 @@ class NavigationBar(AnchorLayout):
 
     # update StringProperty time -- 1 second intervals
     def update_time(self, *args):
-        self.time = datetime.now().strftime('%H:%M')
+        self.time = datetime.now().strftime('%-I:%M %p')
 
     def update_screen(self, current_screen):
         print(current_screen)
@@ -102,10 +102,9 @@ class ErrorScreen(Screen, RecycleView):
     pass
 
 
-
-
 class DevScreen(Screen):
     list = DictProperty({'speed': 0})
+
     def __init__(self, **kwargs):
         super(DevScreen, self).__init__(**kwargs)
 
@@ -113,13 +112,12 @@ class DevScreen(Screen):
         self.list = data
 
 
-
-
-
 class RawDataScreen(Screen):
     data = ListProperty()
+
     def __init__(self, **kwargs):
         super(RawDataScreen, self).__init__(**kwargs)
+
     def populate(self, data):
         self.ids.rv.data = [{'value': str(x) + " : " + str(y)} for x, y in sorted(data.items())]
 

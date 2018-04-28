@@ -1,5 +1,5 @@
 from socket import *
-from dmp.ex_json import json_ex
+from ex_json import json_ex
 from datetime import datetime
 import json
 import asyncio

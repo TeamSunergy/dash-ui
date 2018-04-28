@@ -1,0 +1,89 @@
+<ValueMedium@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    color: [.8,.8,.8,1]
+    font_size: '28pt'
+    font_name: "SourceSansPro"
+
+<DescriptionMedium@Label>:
+    text_size: root.width, None
+    size: self.texture_size
+    size_hint: 1, None
+    halign: 'left'
+    color: [.42,.42,.42, 1]
+    font_name: 'Inconsolata'
+    bold: True
+    font_size: '16pt'
+
+<MainScreen>:
+    BoxLayout:
+        size_hint:(0.4, 0.2)
+        pos_hint:{'left': 1, 'top': .82}
+        orientation: 'vertical'
+        padding: [35,0,0,0]
+        ValueMedium:
+            text: '30C'
+        DescriptionMedium:
+            text: 'HI-CELL TEMP'
+        ValueMedium:
+            text: '1050 w'
+        DescriptionMedium:
+            text: 'ARRAY POWER'
+    BoxLayout:
+        pos_hint:{'right': 1, "top": 1}
+        padding: [0,0,35,0]
+        size_hint:(0.3, 0.2)
+        orientation: 'vertical'
+        ValueMedium:
+            text: '60 mi'
+            halign: 'right'
+        DescriptionMedium:
+            text: 'EST. Range'
+            halign: 'right'
+    BoxLayout:
+        size_hint: 1, .25
+        orientation: 'vertical'
+        pos_hint:{'center_x':0.5}
+        ValueLarge:
+            text:'+20 w'
+            font_size: '46pt'
+            color: [1,1,1,1]
+            halign: 'center'
+        DescriptionLarge:
+            text:'NET POWER'
+            color: [1,1,1,1]
+            font_size: '16pt'
+            halign: 'center'
+    Image:
+        source: './static/icons/battery.png'
+        pos_hint:{'right': 1, "top": .8}
+        size_hint: .2,.4  # Tells the layout to ignore the size_hint in y dir
+
+    FloatLayout:
+        pos_hint:{'center-x': .5, 'center-y': .5}
+        Image:
+            source: './static/speedometer-bg.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: self.parent.width/1.75
+            height: self.parent.width/self.image_ratio
+            x: self.parent.width * .5 - self.width * .5
+
+    FloatLayout:
+        pos_hint:{'center-x': 1, 'bottom': 0}
+        Image:
+            source: './static/net-gauge.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: self.parent.width
+            pos_hint:{'right': 1}
+            height: self.parent.width/self.image_ratio
+            color: [.36,.83,.59,1]
+
+

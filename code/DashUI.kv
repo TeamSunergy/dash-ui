@@ -76,7 +76,6 @@
                 source: './static/icons/close.png' if self.parent.selected else './static/icons/menu.png'
                 pos: generate_btn.pos
 
-
     AnchorLayout:
         anchor_x:'center'
         anchor_y: 'bottom'
@@ -97,6 +96,13 @@
     dev_screen: dev_screen
     raw_data_screen: raw_data_screen
     settings_screen: settings_screen
+    size_hint: 1, .90
+    canvas.before:
+        Color:
+            rgb: [.19,.19,.19,1]
+        Rectangle:
+            pos: self.pos
+            size: self.size
     id: screen_management
     MainScreen:
         id: main_screen
