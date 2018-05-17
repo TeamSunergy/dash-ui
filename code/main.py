@@ -177,6 +177,18 @@ class RawDataScreen(Screen):
 class SettingsScreen(Screen):
     pass
 
+class SplashScreen(Screen):
+    def __init__(self, **kwargs):
+        super(SplashScreen, self).__init__(**kwargs)
+        Clock.schedule_once(self.change_screen, 3)
+    def change_screen(self, *args):
+        print(args)
+        self.manager.current = 'main_screen_name'
+
+
+
+    pass
+
 
 class DashUIApp(App):
     colors_hex = {

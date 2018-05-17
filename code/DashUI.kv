@@ -5,6 +5,8 @@
 #:include view/screens/dev.kv
 #:include view/screens/raw-data.kv
 #:include view/screens/settings.kv
+#:include view/screens/splash.kv
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
 
 
 #Fixed Navigation Bar
@@ -102,6 +104,7 @@
     dev_screen: dev_screen
     raw_data_screen: raw_data_screen
     settings_screen: settings_screen
+    splash_screen: splash_screen
     size_hint: 1, .90
     canvas.before:
         Color:
@@ -110,6 +113,10 @@
             pos: self.pos
             size: self.size
     id: screen_management
+    SplashScreen:
+        id: splash_screen
+        name: "splash_screen_name"
+        manager: screen_management
     MainScreen:
         id: main_screen
         name: "main_screen_name"
