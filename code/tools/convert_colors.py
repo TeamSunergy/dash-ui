@@ -29,7 +29,24 @@ def setup_colors(colors_hex):
     """
 
     for key, color in colors_hex.items():
-        colors[key] = Color(hex_to_rgb(color))
+        color[key] = Color(hex_to_rgb(color))
         # print(colors[key])
 
-    #print(colors)
+#print(colors)
+
+'''
+Converts a scale to 0 to 100 
+'''
+def percentColor(percent):
+    # create new scale to 0 - 100
+    percent = ((percent - -200) / (200 - -200)) * (100 - 0) + 0
+    r = 0
+    g = 0
+    b = 0
+    if percent < 50:
+        r = 255
+        g = round(5.1 * percent)
+    else:
+        g = 255
+        r = round(510 - 5.10 * percent)
+    return [r / 255, g / 255, b, 1]

@@ -24,10 +24,13 @@ async def echo_handler(client, loop, sleep_seconds):
     while True:
         json_ex["speed"] += 1
         json_ex["battery"] += 1
+        if json_ex["speed"] == 100:
+            json_ex["speed"] = 0
+
         await asyncio.sleep(sleep_seconds)
         await loop.sock_sendall(client,json.dumps(json_ex).encode())
         print("Send user JSON @", datetime.now())
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(echo_server(('127.0.0.1',25000), loop, 1))
+    loop.run_until_complete(echo_server(('127.0.0.1',25000), loop, .3))

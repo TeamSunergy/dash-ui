@@ -23,22 +23,25 @@
                 size: self.size
         Static:
             source: './static/icons/park.png'
-            color: [.2,.82, .92, 1]
+            color: [.2,.82, .92, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
             pos_hint:{'x':0, 'top': 1}
         Static:
             source: './static/icons/reverse.png'
-            color: [.99, .96, .36, 1]
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
             pos_hint:{'x':0.04, 'top': 1}
         Static:
             source: './static/icons/drive.png'
             pos_hint:{'x':0.08, 'top': 1}
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
         Static:
             source: './static/icons/cruise.png'
             pos_hint:{'x':0.16, 'top': 1}
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
         Static:
             source: './static/icons/bps.png'
             pos_hint:{'x':0.23, 'top': 1}
             color:[.94, .38, .31, 1]
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
         Label:
             text: str(root.time)
             font_name: "SourceSansPro"
@@ -49,13 +52,16 @@
             source: './static/icons/headlights.png'
             color: [0, .23, .73, 1]
             pos_hint:{'x':0.65, 'top': 1}
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
         Static:
             source: './static/icons/left_signal_small.png'
             pos_hint:{'x':0.74, 'top': 1}
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
         Static:
             source: './static/icons/right_signal_small.png'
             color:[.93, .73, .43, 1]
             pos_hint:{'x':0.77, 'top': 1}
+            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
 
         Button:
             id: generate_btn

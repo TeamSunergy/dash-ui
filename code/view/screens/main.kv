@@ -1,4 +1,4 @@
-<ValueMedium@Label>:
+<MainValueMedium@Label>:
     text_size: root.width, None
     size: self.texture_size
     size_hint: 1, None
@@ -7,7 +7,7 @@
     font_size: '28pt'
     font_name: "SourceSansPro"
 
-<DescriptionMedium@Label>:
+<MainDescriptionMedium@Label>:
     text_size: root.width, None
     size: self.texture_size
     size_hint: 1, None
@@ -19,71 +19,181 @@
 
 <MainScreen>:
     BoxLayout:
-        size_hint:(0.4, 0.2)
-        pos_hint:{'left': 1, 'top': .82}
+        size_hint:(0.8, 0.2)
+        pos_hint:{'left': 1, 'top': .7}
         orientation: 'vertical'
         padding: [35,0,0,0]
-        ValueMedium:
+        MainValueMedium:
             text: '30C'
-        DescriptionMedium:
+        MainDescriptionMedium:
             text: 'HI-CELL TEMP'
-        ValueMedium:
+        MainValueMedium:
             text: '1050 w'
-        DescriptionMedium:
+        MainDescriptionMedium:
             text: 'ARRAY POWER'
+        MainValueMedium:
+            text: '130.0 v'
+            color: [1,1,1,1]
+            font_size: '35pt'
+        MainDescriptionMedium:
+            text: 'BATTERY VOLT.'
+            color: [1,1,1,1]
     BoxLayout:
         pos_hint:{'right': 1, "top": 1}
         padding: [0,0,35,0]
         size_hint:(0.3, 0.2)
         orientation: 'vertical'
-        ValueMedium:
+        MainValueMedium:
             text: '60 mi'
             halign: 'right'
-        DescriptionMedium:
+        MainDescriptionMedium:
             text: 'EST. Range'
             halign: 'right'
     BoxLayout:
         size_hint: 1, .25
         orientation: 'vertical'
         pos_hint:{'center_x':0.5}
-        ValueLarge:
+        MainValueMedium:
             text:'+20 w'
             font_size: '46pt'
             color: [1,1,1,1]
             halign: 'center'
-        DescriptionLarge:
+        MainDescriptionMedium:
             text:'NET POWER'
             color: [1,1,1,1]
             font_size: '16pt'
             halign: 'center'
+    Label:
+        text:'+20 w'
+        font_size: '46pt'
+        color: [1,1,1,1]
+        halign: 'center'
+
     Image:
         source: './static/icons/battery.png'
-        pos_hint:{'right': 1, "top": .8}
-        size_hint: .2,.4  # Tells the layout to ignore the size_hint in y dir
+        x: self.parent.width * .95 - self.width * .5
+        y: self.parent.height * .65 - self.height * .5
+        color: [1,1,1,1]
+    Label:
+        text: "100"
+        x: self.parent.width * .95 - self.width * .5
+        y: self.parent.height * .52 - self.height * .5
+        color: [1,1,1,1]
+        font_size: '28pt'
+        font_name: "SourceSansPro"
+    Label:
+        text: "SOC"
+        x: self.parent.width * .95 - self.width * .5
+        y: self.parent.height * .45 - self.height * .5
+        color: [1,1,1,1]
+        font_size: '16pt'
+        font_name: 'Inconsolata'
 
-    FloatLayout:
+
+
+    Image:
         pos_hint:{'center-x': .5, 'center-y': .5}
-        Image:
-            source: './static/speedometer-bg.png'
-            allow_stretch: True
-            keep_ratio: True
-            size_hint_y: None
-            size_hint_x: None
-            width: self.parent.width/1.75
-            height: self.parent.width/self.image_ratio
-            x: self.parent.width * .5 - self.width * .5
-
-    FloatLayout:
+        source: './static/speedometer-bg.png'
+        allow_stretch: True
+        keep_ratio: True
+        size_hint_y: None
+        size_hint_x: None
+        width: self.parent.width/1.75
+        height: self.parent.width/self.image_ratio
+        x: self.parent.width * .5 - self.width * .5
+    Image:
         pos_hint:{'center-x': 1, 'bottom': 0}
-        Image:
-            source: './static/net-gauge.png'
-            allow_stretch: True
-            keep_ratio: True
-            size_hint_y: None
-            size_hint_x: None
-            width: self.parent.width
-            pos_hint:{'right': 1}
-            height: self.parent.width/self.image_ratio
-            color: [.36,.83,.59,1]
+        source: './static/net-gauge.png'
+        allow_stretch: True
+        keep_ratio: True
+        size_hint_y: None
+        size_hint_x: None
+        width: self.parent.width
+        height: self.parent.width/self.image_ratio
+        color: root.net_gauge
+        id: net_gauge
 
+    Image:
+        source: './static/icons/left_signal.png'
+        x: self.parent.width * .37 - self.width * .5
+        y: self.parent.height * .6 - self.height * .5
+        color: [1,1,1,1]
+        id: left1
+
+    Image:
+        source: './static/icons/left_signal.png'
+        x: self.parent.width * .35 - self.width * .5
+        y: self.parent.height * .6 - self.height * .5
+        color: [1,1,1,0]
+        id: left2
+    Image:
+        source: './static/icons/left_signal.png'
+        x: self.parent.width * .33 - self.width * .5
+        y: self.parent.height * .6 - self.height * .5
+        color: [1,1,1,0]
+        id: left3
+    Image:
+        source: './static/icons/right_signal.png'
+        x: self.parent.width * .63 - self.width * .5
+        y: self.parent.height * .6 - self.height * .5
+        color: [1,1,1,1]
+        id: right1
+
+        #color: [.92,.73,.44,1]
+
+    Image:
+        source: './static/icons/right_signal.png'
+        x: self.parent.width * .65 - self.width * .5
+        y: self.parent.height * .6 - self.height * .5
+        color: [0, 0, 0 ,0]
+        id: right2
+        #color: [.92,.73,.44,.75]
+
+    Image:
+        source: './static/icons/right_signal.png'
+        x: self.parent.width * .67 - self.width * .5
+        y: self.parent.height * .6 - self.height * .5
+        color: [0, 0, 0 ,0]
+        id: right3
+        #color: [.92,.73,.44,.5]
+    Image:
+        source: './static/icons/headlights.png'
+        x: self.parent.width * .275 - self.width * .5
+        y: self.parent.height * .5 - self.height * .5
+        color: [1,1,1,1]
+    Image:
+        source: './static/icons/bps.png'
+        x: self.parent.width * .725 - self.width * .5
+        y: self.parent.height * .5 - self.height * .5
+        color: [1,1,1,1]
+    Image:
+        source: './static/icons/cruise.png'
+        x: self.parent.width * .5 - self.width * .5
+        y: self.parent.height * .75 - self.height * .5
+        color: [1,1,1,1]
+
+    Label:
+        text: str(root.list['speed'])
+        x: self.parent.width * .5 - self.width * .5
+        y: self.parent.height * .55 - self.height * .5
+        color: [1,1,1,1]
+        font_size: 175
+    Label:
+        text: 'MPH'
+        x: self.parent.width * .5 - self.width * .5
+        y: self.parent.height * .46 - self.height * .5
+        color: [1,1,1,1]
+        font_size: 30
+    Label:
+        text: str(root.list['speed'])
+        x: self.parent.width * .5 - self.width * .5
+        y: self.parent.height * .55 - self.height * .5
+        color: [1,1,1,1]
+        font_size: 175
+    Label:
+        text: 'MPH'
+        x: self.parent.width * .5 - self.width * .5
+        y: self.parent.height * .46 - self.height * .5
+        color: [1,1,1,1]
+        font_size: 30
 
