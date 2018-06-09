@@ -1,0 +1,32 @@
+<UserProfile>:
+    AnchorLayout:
+        id:test1
+        anchor_x: 'center'
+        anchor_y: 'center'
+        ScrollView:
+            id:test2
+            size_hint:.75,.33
+            do_scroll_x:True
+            do_scroll_y:False
+            GridLayout:
+                id:userGrid
+                rows:1
+                size_hint:None,None
+                width: self.minimum_width
+                spacing: dp(10)
+                RoundedButton:
+                    text:'Kirk'
+                    size:285,200
+                    size_hint:None,None
+                RoundedButton:
+                    text:'Drew'
+                    size:285,200
+                    size_hint:None,None
+                RoundedButton:
+                    text:'Jimmy'
+                    size:285,200
+                    size_hint:None,None
+                RoundedButton:
+                    text:'Tom'
+                    size:285,200
+                    size_hint:None,None

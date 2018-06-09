@@ -1,0 +1,16 @@
+{
+  "users": [
+{
+  "username": "soaresss",
+  "first_name": "Steve",
+  "last_name": "Soares",
+  "profile_picture": {}
+},
+{
+"username": "drewb",
+"first_name": "Drew",
+"last_name": "Brees",
+"profile_picture": "./static/profile/brees_profile.jpg"
+}
+]
+}

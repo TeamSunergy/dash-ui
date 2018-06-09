@@ -1,4 +1,5 @@
-json_ex = {
+dictionary = {
+    'soc': 0,
     'bpsHighVoltage': 0.0,
     'bpsLowVoltage': 0.0,
     'packAmpHours': 0.0,
@@ -24,7 +25,6 @@ json_ex = {
     'motConErrorBadMotorPosition': False,
     'motConErrorDCBusOverVoltage': False,
     'motConErrorSoftwareOverCurrent': False,
-    'mpptTotalNetPower': 0.0,
     'motConLimitTemperature': False,
     'motConLimitBusVoltageLower': False,
     'motConLimitBusVoltageUpper': False,
@@ -71,6 +71,7 @@ json_ex = {
     'mppt3ArrayCurrent': 0.0,
     'mppt3BatteryVoltage': 0.0,
     'mppt3UnitTemperature': 0.0,
+    'mpptTotalNetPower': 0.0,
     'timeSent': 0.0,
     'coordinates': (0.0, 0.0),
     'coordinatesPrecision': (0.0, 0.0, 0.0),
@@ -84,6 +85,5 @@ json_ex = {
     'messageRestarted': None,
     'echo_serverRestarted': None,
     'toDashRestarted': None,
-    'gpsStuffRestarted': None,
-    'soc': 0
+    'gpsStuffRestarted': None
 }
