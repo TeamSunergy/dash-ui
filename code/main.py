@@ -15,7 +15,7 @@ from range_key_dict import RangeKeyDict
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty, StringProperty, ListProperty, DictProperty
-from kivy.clock import Clock
+from kivy.clock import Clock, mainthread
 from datetime import datetime
 from kivy.uix.anchorlayout import AnchorLayout
 import logging
@@ -162,9 +162,8 @@ class MainScreen(Screen):
 
     net_gauge = ListProperty([1, 1, 1, 1])
     soc = ListProperty([1,1,1,1])
-
+    @mainthread
     def update(self, data):
-        print(data)
         if self.data['gpio5'] == 1 and self.right_turn_signal:
             self.animate_right_lights(data)
         elif self.data['gpio5'] == 0:
@@ -181,6 +180,7 @@ class MainScreen(Screen):
         self.manager.raw_data_screen.populate(data)
         self.manager.dev_screen.update(data)
         App.get_running_app().update(data)
+        self.net_gauge = percentColor(self.data['netPower'])
 
     def soc_color(self, num):
         range_key_dict = RangeKeyDict({
