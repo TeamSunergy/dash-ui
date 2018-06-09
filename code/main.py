@@ -7,9 +7,9 @@ from threading import Thread
 from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.animation import Animation
-from code.tools.convert_colors import percentColor
-from code.tools.fonts import KIVY_FONTS
-from code.dictionary.dictionary import dictionary
+from tools.convert_colors import percentColor
+from tools.fonts import KIVY_FONTS
+from dictionary.dictionary import dictionary
 from kivy.storage.jsonstore import JsonStore
 from range_key_dict import RangeKeyDict
 from kivy.app import App
