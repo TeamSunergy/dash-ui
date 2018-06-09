@@ -19,6 +19,7 @@ from kivy.clock import Clock, mainthread
 from datetime import datetime
 from kivy.uix.anchorlayout import AnchorLayout
 import logging
+import time
 
 
 class ScreenManagement(ScreenManager):
@@ -206,6 +207,8 @@ class MainScreen(Screen):
             self.manager.current = 'raw_data_screen_name'
         elif keycode[1] == '5':
             self.manager.current = 'error_screen_name'
+        elif keycode[1] == '9':
+            App.get_running_app().stop()
         return True
 
 #TODO:
@@ -277,7 +280,12 @@ if __name__ == "__main__":
     logging.info("Attempting to start Kivy")
     try:
         DashUIApp().run()
+
     except:
         logging.critical("Kivy failed to started.")
+
+    time.sleep(5)
+    App.get_running_app().stop()
+
 
 
