@@ -6,7 +6,7 @@
 #:include view/screens/raw-data.kv
 #:include view/screens/settings.kv
 #:include view/screens/splash.kv
-#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:include view/screens/user_profiles.kv
 
 
 #Fixed Navigation Bar
@@ -25,25 +25,28 @@
                 size: self.size
         Static:
             source: './static/icons/park.png'
-            color: [.2,.82, .92, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            #color: [.2,.82, .92, 1] if app.test['gpio'] == 1 else [.31,.31,.31,1]
+            color: [.31,.31,.31,1]
             pos_hint:{'x':0, 'top': 1}
         Static:
             source: './static/icons/reverse.png'
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            #color: [.99, .96, .36, 1] if app.test['gpio'] == 1 else [.31,.31,.31,1]
+            color: [.31,.31,.31,1]
             pos_hint:{'x':0.04, 'top': 1}
         Static:
             source: './static/icons/drive.png'
             pos_hint:{'x':0.08, 'top': 1}
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            #color: [.99, .96, .36, 1] if app.test['gpio'] == 1 else [.31,.31,.31,1]
+            color: [.31,.31,.31,1]
         Static:
             source: './static/icons/cruise.png'
             pos_hint:{'x':0.16, 'top': 1}
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            color: [.99, .96, .36, 1] if app.list['gpio12'] == 1 else [.31,.31,.31,1]
         Static:
             source: './static/icons/bps.png'
             pos_hint:{'x':0.23, 'top': 1}
-            color:[.94, .38, .31, 1]
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            #color:[.94, .38, .31, 1]
+            color: [.31,.31,.31,1]
         Label:
             text: str(root.time)
             font_name: "SourceSansPro"
@@ -54,16 +57,16 @@
             source: './static/icons/headlights.png'
             color: [0, .23, .73, 1]
             pos_hint:{'x':0.65, 'top': 1}
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            color: [.31,.31,.31,1]
         Static:
             source: './static/icons/left_signal_small.png'
             pos_hint:{'x':0.74, 'top': 1}
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            color: [.99, .96, .36, 1] if app.list['gpio6'] == 1 else [.31,.31,.31,1]
         Static:
             source: './static/icons/right_signal_small.png'
             color:[.93, .73, .43, 1]
             pos_hint:{'x':0.77, 'top': 1}
-            color: [.99, .96, .36, 1] if app.test['park'] == 1 else [.31,.31,.31,1]
+            color: [.99, .96, .36, 1] if app.list['gpio5'] == 1 else [.31,.31,.31,1]
 
         Button:
             id: generate_btn
@@ -105,6 +108,7 @@
     raw_data_screen: raw_data_screen
     settings_screen: settings_screen
     splash_screen: splash_screen
+    user_profile: user_profile
     size_hint: 1, .90
     canvas.before:
         Color:
@@ -134,3 +138,6 @@
     SettingsScreen:
         id: settings_screen
         name: "settings_screen_name"
+    UserProfile:
+        id: user_profile
+        name: "user_profile_screen_name"

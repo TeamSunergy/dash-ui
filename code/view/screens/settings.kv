@@ -27,3 +27,21 @@
             RoundedButton:
                 text: 'Raw Data'
                 on_release: app.root.ids.screen_management.current = 'raw_data_screen_name'
+    Button:
+        id: user_profile
+        size_hint: .2, .2
+        background_color: 0,0,0,0
+        canvas.before:
+            Color:
+                rgba: (.19,.19,.19,1) if self.state=='normal' else (0,.7,.7,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        selected: False
+        x: self.parent.width * .5 - self.width * .5
+        y: self.parent.height * .3 - self.height * .5
+        on_release: app.root.ids.screen_management.current = 'user_profile_screen_name'
+        Image:
+            size: user_profile.size
+            source: './static/icons/account.png'
+            pos: user_profile.pos

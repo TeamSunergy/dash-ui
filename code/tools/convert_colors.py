@@ -49,4 +49,4 @@ def percentColor(percent):
     else:
         g = 255
         r = round(510 - 5.10 * percent)
-    return [r / 255, g / 255, b, 1]
+    return (r / 255, g / 255, b, 1)

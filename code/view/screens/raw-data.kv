@@ -1,19 +1,20 @@
 <Row@BoxLayout>:
     canvas.before:
         Color:
-            rgba: .3,.3,.3,1
-        Rectangle:
-            size: self.size
-            pos: self.pos
+            rgba: (0.2, 0.2, 0.2, 1)
     value: ''
+    key: ''
     Label:
-        text: root.value
+        markup: True
+        text: str("[color=39a07c]" + root.key + "[/color] : " + root.value)
         text_size: self.width, None
         size_hint: 1, None
-        #height: self.texture_size[1]
+        font_size: 35
+        font_name: 'Inconsolata'
+
+
 <RawDataScreen>:
     BoxLayout:
-        padding: [5,5,5,0]
         canvas:
             Color:
                 rgba: .19,.19,.19, 1
@@ -30,8 +31,7 @@
             viewclass: 'Row'
             RecycleGridLayout:
                 cols: 3
-                default_size_hint: .33, None
+                default_size_hint: 1, None
                 size_hint_y: None
                 height: self.minimum_height
                 orientation: 'vertical'
-                spacing: dp(1)

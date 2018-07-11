@@ -108,15 +108,15 @@
             HeaderLarge:
                 text: 'MAIN'
             ValueLarge:
-                text: str(root.list['speed']) + ' mph'
+                text: str(root.list['motConVehicleVelocity']) + ' mph'
             DescriptionLarge:
                 text: 'SPEED'
             ValueLarge:
-                text: "130 v"
+                text: str(root.list['batteryPackInstantaneousVoltage'])+ ' v'
             DescriptionLarge:
                 text: 'BATTERY VOLT.'
             ValueLarge:
-                text: "+20 W"
+                text: str(root.list['netPower']) + " W"
             DescriptionLarge:
                 text: 'NET POWER'
             Widget:
@@ -127,18 +127,18 @@
             HeaderMedium:
                 text: 'CELLS'
             ValueMedium:
-                text: "40°C"
+                text: str(root.list['highestCellTemperature']) + ' °C'
             DescriptionMedium:
                 text: 'HI-CELL TEMP'
             ValueMedium:
-                text: "3.5000 v"
+                text: str(root.list['bpsHighVoltage']) + ' v'
             DescriptionMedium:
                 text: 'HI-CELL VOLTAGE'
             SeparatorX:
             HeaderMedium:
                 text: 'ARRAY'
             ValueMedium:
-                text: "1200 W"
+                text: str(root.list['mpptTotalNetPower']) + " W"
             DescriptionMedium:
                 text: 'TOTAL ARRAY POWER'
             GridLayout:
@@ -146,11 +146,11 @@
                 cols: 3
                 rows: 2
                 ValueSmall:
-                    text: '123'
+                    text: str(root.list['mppt1UnitTemperature'])
                 ValueSmall:
-                    text: '123'
+                    text: str(root.list['mppt2UnitTemperature'])
                 ValueSmall:
-                    text: '123'
+                    text: str(root.list['mppt3UnitTemperature'])
                 DescriptionSmall:
                     text: 'SUB-A'
                 DescriptionSmall:
@@ -165,14 +165,14 @@
                 text: 'ODOMETER'
                 halign: 'left'
             ValueMedium:
-                text: "114 mi"
+                text: str(root.list['motConOdometer']) + " mi"
                 halign: 'left'
             DescriptionMedium:
                 text: 'TOTAL'
                 line_height: 1
                 halign: 'left'
             ValueMedium:
-                text: "27 mi"
+                text: "-- mi"
                 halign: 'left'
             DescriptionMedium:
                 text: 'TRIP'
@@ -183,14 +183,14 @@
                 text: 'BPS'
                 halign: 'left'
             ValueMedium:
-                text: "40°"
+                text: str(root.list['internalBPSTemperature']) + " °C"
                 halign: 'left'
             DescriptionMedium:
                 text: 'AVG. BATTERY TEMP'
                 line_height: 1
                 halign: 'left'
             ValueMedium:
-                text: "Error 01"
+                text: "----- --"
                 halign: 'left'
             DescriptionMedium:
                 text: 'STATUS'
