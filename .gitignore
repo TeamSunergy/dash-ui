@@ -16,6 +16,9 @@ code/.idea/tasks.xml
 # production
 **/build
 
+# Python
+**/__pycache__/*
+
 # misc
 **/.DS_Store
 .env.local

@@ -281,7 +281,7 @@ if __name__ == "__main__":
     try:
         DashUIApp().run()
     except:
-        logging.critical("Kivy failed to started.")
+        logging.critical("Kivy failed to start or was stopped.")
 
 
 

@@ -49,10 +49,6 @@ async def echo_handler(client, loop, sleep_seconds):
         json_ex['mppt3UnitTemperature'] = random.randint(100, 200)
         json_ex['internalBPSTemperature'] = random.randint(100, 200)
         json_ex['motConOdometer'] = random.randint(100, 200)
-
-
->>>>>>> 90414f97ca89482bd8b28a0c2055fc28994a59a7
-
         await asyncio.sleep(sleep_seconds)
         await loop.sock_sendall(client,json.dumps(json_ex).encode())
         print("Send user JSON @", datetime.now())
