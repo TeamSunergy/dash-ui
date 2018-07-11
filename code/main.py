@@ -250,7 +250,7 @@ class SplashScreen(Screen):
             self.manager.current = 'main_screen_name'
 
     def on_touch_down(self, touch):
-        self.manager.current = 'main_screen_name'
+        self.manager.current = 'dev_screen_name'
 
 
 #TODO:
@@ -281,7 +281,7 @@ if __name__ == "__main__":
     try:
         DashUIApp().run()
     except:
-        logging.critical("Kivy failed to start or was stopped.")
+        logging.critical("Kivy failed to start or was force closed.")
 
 
 
