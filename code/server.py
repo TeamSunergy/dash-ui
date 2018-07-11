@@ -22,10 +22,10 @@ async def echo_server(address, loop, sleep_seconds):
 
 async def echo_handler(client, loop, sleep_seconds):
     while True:
-        json_ex["speed"] += 1
-        json_ex["battery"] += 1
-        if json_ex["speed"] == 100:
-            json_ex["speed"] = 0
+        json_ex["motConVehicleVelocity"] += 1
+        json_ex["batteryPackInstantaneousVoltage"] += 1
+        if json_ex["motConVehicleVelocity"] == 100:
+            json_ex["motConVehicleVelocity"] = 0
 
         await asyncio.sleep(sleep_seconds)
         await loop.sock_sendall(client,json.dumps(json_ex).encode())
